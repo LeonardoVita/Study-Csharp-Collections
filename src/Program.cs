@@ -12,9 +12,13 @@ namespace src
             CsvReader Reader = new CsvReader(FilePath);
             Client[] Clients = Reader.ReadFirstNClients(3);
             List<Client> ListClients = Reader.ReadAllClients();
+
+            //Add new client into List
             Client lilliput = new Client("lilliput", "Liliane orleans","15445569965",162,DateTime.Now);
-            int lilliputIndex = ListClients.FindIndex(x => x.CPF == "47885665415");
+            int lilliputIndex = ListClients.FindIndex(x => x.UserName == "Escaper");
             ListClients.Insert(lilliputIndex+1, lilliput);
+            //Remove DARK from the List
+            ListClients.RemoveAt(ListClients.FindIndex(x => x.UserName == "DARK"));
 
             foreach(var client in ListClients)
             {
