@@ -30,6 +30,23 @@ namespace src
                 Console.WriteLine($"\n================================\n");
             }
 
+            Client Jose = new Client("lilliput", "José orleans", "45578998965", 172, DateTime.Now);
+            Client Maria = new Client("lilliput", "Maria orleans", "35478332333", 160, DateTime.Now);
+
+            Dictionary<string, Client> Dicionario = new Dictionary<string, Client>();
+
+            Dicionario.Add(Jose.CPF, Jose);
+            Dicionario.Add(Maria.CPF, Maria);
+
+            Console.WriteLine($"\n|||||||||||||||||||||||||||||||||||||||||||||\n");
+
+            foreach (var item in Dicionario)
+            {
+                Console.WriteLine($"       key: { item.Key}\nValue.Name: {item.Value.FullName}");
+                Console.WriteLine($"\n|||||||||||||||||||||||||||||||||||||||||||||\n");
+            }
+
+
         }
     }
 }
