@@ -20,14 +20,14 @@ namespace src
             //Remove DARK from the List
             ListClients.RemoveAt(ListClients.FindIndex(x => x.UserName == "DARK"));
 
-            foreach(var client in ListClients)
+            //foreach(var client in ListClients)
+            //{
+            //   PrintClients(client);    
+            //}
+
+            for (int i = 0; i < ListClients.Count; i++)
             {
-                Console.WriteLine($"UserName: {client.UserName}");
-                Console.WriteLine($"FullName: {client.FullName}");
-                Console.WriteLine($"CPF: {client.CPF}");
-                Console.WriteLine($"Altura: {client.Altura}");
-                Console.WriteLine($"Nascimento: {client.Nascimento}");
-                Console.WriteLine($"\n================================\n");
+                PrintClients(ListClients[i]);
             }
 
             Client Jose = new Client("lilliput", "José orleans", "45578998965", 172, DateTime.Now);
@@ -47,6 +47,16 @@ namespace src
             }
 
 
+        }
+
+        public static void PrintClients(Client client)
+        {
+            Console.WriteLine($"UserName: {client.UserName}");
+            Console.WriteLine($"FullName: {client.FullName}");
+            Console.WriteLine($"CPF: {client.CPF}");
+            Console.WriteLine($"Altura: {client.Altura}");
+            Console.WriteLine($"Nascimento: {client.Nascimento}");
+            Console.WriteLine($"\n================================\n");
         }
     }
 }
