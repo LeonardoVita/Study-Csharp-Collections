@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace src
 {
@@ -8,11 +9,14 @@ namespace src
         {
             string FilePath = @"C:\Users\l.milanez.de.almeida\Documents\estudos\pluralsight\Csharp\collections\src\Clients.csv";
 
-            CsvReader reader = new CsvReader(FilePath);
-            Client[] clients = reader.ReadFirstNClients(4);
+            CsvReader Reader = new CsvReader(FilePath);
+            Client[] Clients = Reader.ReadFirstNClients(3);
+            List<Client> ListClients = Reader.ReadAllClients();
+            Client lilliput = new Client("lilliput", "Liliane orleans","15445569965",162,DateTime.Now);
+            int lilliputIndex = ListClients.FindIndex(x => x.CPF == "47885665415");
+            ListClients.Insert(lilliputIndex+1, lilliput);
 
-
-            foreach(var client in clients)
+            foreach(var client in ListClients)
             {
                 Console.WriteLine($"UserName: {client.UserName}");
                 Console.WriteLine($"FullName: {client.FullName}");

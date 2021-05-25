@@ -28,13 +28,30 @@ namespace src
                 for(int i = 0; i < nClients; i++)
                 {
                     string Linha = sr.ReadLine();
-                    client[i] = SplitLine(Linha);
+                    client[i] = SplitLineAndCreateClient(Linha);
                 }
             }
             return client;
         }
 
-        public Client SplitLine(string Line)
+        public List<Client> ReadAllClients()
+        {
+            List<Client> clients = new List<Client>();
+
+            using (StreamReader sr = new StreamReader(_csvReader))
+            {
+                //le a primeira linha que é o cabeçalho
+                sr.ReadLine();
+                string Linha;
+                while((Linha = sr.ReadLine()) != null )
+                {                    
+                    clients.Add(SplitLineAndCreateClient(Linha));
+                }
+            }
+            return clients;
+        }
+
+        public Client SplitLineAndCreateClient(string Line)
         {
             string[] LineSplited = Line.Split(',');
             string UserName = LineSplited[0];
