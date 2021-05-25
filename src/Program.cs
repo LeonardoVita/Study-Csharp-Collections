@@ -13,6 +13,15 @@ namespace src
             Client[] Clients = Reader.ReadFirstNClients(3);
             List<Client> ListClients = Reader.ReadAllClients();
 
+            Console.WriteLine("Digite o numero de Usuarios que deseja ver>");
+            bool InputIsInt = int.TryParse(Console.ReadLine(), out int UsersInt);
+
+            if(!InputIsInt || UsersInt <= 0)
+            {
+                Console.WriteLine("Numero digitado é invalido!");
+                return;
+            }
+
             //Add new client into List
             Client lilliput = new Client("lilliput", "Liliane orleans","15445569965",162,DateTime.Now);
             int lilliputIndex = ListClients.FindIndex(x => x.UserName == "Escaper");
@@ -25,8 +34,15 @@ namespace src
             //   PrintClients(client);    
             //}
 
+            int MaxToDisplay = UsersInt;
             for (int i = 0; i < ListClients.Count; i++)
             {
+                if(i > 0 && (i % MaxToDisplay == 0))
+                {
+                    Console.WriteLine("Click ENTER para continuar ou qualquer outra coisa para sair");
+                    if (Console.ReadLine() != "")
+                        break;
+                }
                 PrintClients(ListClients[i]);
             }
 
