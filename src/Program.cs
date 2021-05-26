@@ -14,9 +14,9 @@ namespace src
             Client[] ArrayClients = Reader.ReadFirstNClients(3);
             List<Client> ListClients = Reader.ReadAllClients();            
 
-            //AddDeleteExample(ListClients);
+            AddDeleteExample(ListClients);
 
-            //ForEachPrint(ListClients);
+            ForEachPrint(ListClients);
 
             //ForEachPrint(ArrayClients);
 
