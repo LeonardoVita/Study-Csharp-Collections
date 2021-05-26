@@ -25,8 +25,6 @@ namespace src
             //ForLoopPrint(ArrayClients);
 
             //DictionaryExample();
-
-
         }
 
         public static void PrintClients(Client client)
