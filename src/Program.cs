@@ -12,19 +12,20 @@ namespace src
             CsvReader Reader = new CsvReader(FilePath);
 
             Client[] ArrayClients = Reader.ReadFirstNClients(3);
-            List<Client> ListClients = Reader.ReadAllClients();            
+            List<Client> ListClients = Reader.ReadAllClients();
 
             AddDeleteExample(ListClients);
 
-            ForEachPrint(ListClients);
+            //ForEachPrint(ListClients);
 
             //ForEachPrint(ArrayClients);
 
-            //ForLoopPrint(ListClients);
+            ForLoopPrint(ListClients);
 
             //ForLoopPrint(ArrayClients);
 
-            //DictionaryExample();
+            DictionaryExample();
+
         }
 
         public static void PrintClients(Client client)
@@ -94,6 +95,7 @@ namespace src
         {
             int UsersInt = ReadUsersSizePerPage();
             int MaxToDisplay = UsersInt;
+
             for (int i = 0; i < ListClients.Count; i++)
             {
                 if (i > 0 && (i % MaxToDisplay == 0))
