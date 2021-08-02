@@ -13,6 +13,7 @@ namespace src
 
             Client[] ArrayClients = Reader.ReadFirstNClients(3);
             List<Client> ListClients = Reader.ReadAllClients();
+            Dictionary<string, List<Client>> DictionaryClients = Reader.ReadAllClientsWithDictionary();
 
             AddDeleteExample(ListClients);
 
@@ -20,9 +21,12 @@ namespace src
 
             //ForEachPrint(ArrayClients);
 
-            ForLoopPrint(ListClients);
+            //ForLoopPrint(ListClients);
 
             //ForLoopPrint(ArrayClients);
+
+            ForEachPrint(DictionaryClients);
+
 
             DictionaryExample();
 
@@ -30,17 +34,19 @@ namespace src
 
         public static void PrintClients(Client client)
         {
+            Console.WriteLine("");
             Console.WriteLine($"UserName: {client.UserName}");
             Console.WriteLine($"FullName: {client.FullName}");
             Console.WriteLine($"CPF: {client.CPF}");
             Console.WriteLine($"Altura: {client.Altura}");
+            Console.WriteLine($"Genero: {client.Gender}");
             Console.WriteLine($"Nascimento: {client.Nascimento}");
             Console.WriteLine($"\n================================\n");
         }
         public static void DictionaryExample()
         {
-            Client Jose = new Client("lilliput", "José orleans", "45578998965", 172, DateTime.Now);
-            Client Maria = new Client("lilliput", "Maria orleans", "35478332333", 160, DateTime.Now);
+            Client Jose = new Client("lilliput", "José orleans", "45578998965", 172, "Masculino", DateTime.Now);
+            Client Maria = new Client("lilliput", "Maria orleans", "35478332333", 160, "Feminino", DateTime.Now);
 
             Dictionary<string, Client> Dicionario = new Dictionary<string, Client>();
 
@@ -58,7 +64,7 @@ namespace src
         public static void AddDeleteExample(List<Client> ListClients)
         {
             //Add new client into List
-            Client lilliput = new Client("lilliput", "Liliane orleans", "15445569965", 162, DateTime.Now);
+            Client lilliput = new Client("lilliput", "Liliane orleans", "15445569965", 162, "Masculino",DateTime.Now);
             int lilliputIndex = ListClients.FindIndex(x => x.UserName == "Escaper");
             ListClients.Insert(lilliputIndex + 1, lilliput);
             //Remove DARK from the List
@@ -77,9 +83,31 @@ namespace src
 
             return UsersInt;
         }
+        public static void ForEachPrint(Dictionary<string,List<Client>>  ListClients)
+        {
+            foreach (var client in ListClients.Keys)
+            {
+                Console.WriteLine(client);
+            }
+
+            Console.WriteLine("Qual Genero deseja listar?");
+            string chosenGender = Console.ReadLine();
+
+            if (ListClients.ContainsKey(chosenGender))
+            {
+                foreach (Client client in ListClients[chosenGender].Take(5))
+                {
+                    PrintClients(client);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Não é um genero valido");
+            }
+        }
         public static void ForEachPrint(List<Client> ListClients)
         {
-            foreach (var client in ListClients)
+            foreach (var client in ListClients.OrderBy(x => x.UserName))
             {
                 PrintClients(client);
             }

@@ -51,6 +51,34 @@ namespace src
             return clients;
         }
 
+        public Dictionary<string, List<Client>> ReadAllClientsWithDictionary()
+        {
+            var clients = new Dictionary<string, List<Client>>();
+
+            using (StreamReader sr = new StreamReader(_csvReader))
+            {
+                //le a primeira linha que é o cabeçalho
+                sr.ReadLine();
+
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    Client client = SplitLineAndCreateClient(line);
+
+                    if (clients.ContainsKey(client.Gender))
+                    {
+                        clients[client.Gender].Add(client);
+                    }
+                    else
+                    {
+                        List<Client> clientsInGender = new List<Client>() { client };
+                        clients.Add(client.Gender, clientsInGender);
+                    }
+                }
+            }
+            return clients;
+        }
+
         public Client SplitLineAndCreateClient(string Line)
         {
             string[] LineSplited = Line.Split(',');
@@ -58,9 +86,10 @@ namespace src
             string FullName = LineSplited[1];
             string CPF = LineSplited[2];
             int Altura= int.Parse(LineSplited[3]);
-            DateTime Nascimento = DateTime.Parse(LineSplited[4]);
+            string Gender= LineSplited[4];
+            DateTime Nascimento = DateTime.Parse(LineSplited[5]);
 
-            return new Client(UserName, FullName, CPF, Altura, Nascimento);
+            return new Client(UserName, FullName, CPF, Altura, Gender, Nascimento);
         }
     }
 }

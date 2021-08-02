@@ -12,15 +12,17 @@ namespace src
         public string FullName;
         public string CPF;
         public int Altura;
+        public string Gender;
         public DateTime Nascimento;
 
-        public Client(string userName, string fullName, string cPF, int altura, DateTime nascimento)
+        public Client(string userName, string fullName, string cpf, int altura, string gender, DateTime nascimento)
         {
             UserName = userName;
             FullName = fullName;
-            CPF = cPF;
+            CPF = cpf;
             Altura = altura;
             Nascimento = nascimento;
+            Gender = gender;
         }
     }
 }
